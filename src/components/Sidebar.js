@@ -10,6 +10,8 @@ import {
   faChartBar,
   faUsers,
   faUserTie,
+  faCalculator,
+  faBullhorn,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
@@ -99,6 +101,21 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             >
               <FontAwesomeIcon icon={faUsers} />
               {isOpen && "User Management"}
+            </li>
+            <li
+              className="p-4 flex items-center gap-4 hover:bg-gray-700 cursor-pointer"
+              onClick={() => navigate("/accounting")}
+            >
+              <FontAwesomeIcon icon={faCalculator} />
+              {isOpen && <span>Accounting</span>}
+            </li>
+            {/* Add Marketing Management */}
+            <li
+              className="p-4 flex items-center gap-4 hover:bg-gray-700 cursor-pointer"
+              onClick={() => navigate("/marketing")}
+            >
+              <FontAwesomeIcon icon={faBullhorn} />
+              {isOpen && <span>Marketing Management</span>}
             </li>
 
           </ul>

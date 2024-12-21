@@ -11,7 +11,9 @@ import Notifications from "./pages/Notifications";
 import Settings from "./pages/Settings";
 import Profile from "./pages/Profile";
 import UserManagement from "./pages/UserManagement";
-import HR from "./pages/HR";
+import HR from "./pages/HR/HR";
+import AccountingDashboard from "./pages/Accounting/AccountingDashboard";
+import MarketingDashboard from "./pages/Marketing/MarketingDashboard";
 
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
@@ -87,6 +89,8 @@ const App = () => {
             <Route path="/profile" element={<LayoutWrapper><Profile user={user} onUpdateUser={setUser} /></LayoutWrapper>} />
             <Route path="/hr" element={<LayoutWrapper><HR /></LayoutWrapper>} />
             <Route path="/users" element={<LayoutWrapper><UserManagement /></LayoutWrapper>} />
+            <Route path="/accounting" element={<LayoutWrapper><AccountingDashboard /></LayoutWrapper>} />
+            <Route path="/marketing" element={<LayoutWrapper><MarketingDashboard /></LayoutWrapper>}/>
           </>
         ) : (
           <Route path="*" element={<Navigate to="/" />} />

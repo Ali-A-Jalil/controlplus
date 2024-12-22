@@ -51,13 +51,14 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <FontAwesomeIcon icon={faCalendarAlt} />
             {isOpen && <span>Reservations</span>}
           </li>
-            <li
-              className="p-4 flex items-center gap-4 hover:bg-gray-700 cursor-pointer"
-              onClick={() => navigate("/clients")}
-            >
-              <FontAwesomeIcon icon={faUserFriends} />
-              {isOpen && <span>Clients</span>}
-            </li>
+          <li
+            className="p-4 flex items-center gap-2 hover:bg-gray-700 cursor-pointer"
+            onClick={() => navigate("/customer-management")}
+          >
+            <FontAwesomeIcon icon={faUsers} />
+            {isOpen && "Customer Management"}
+          </li>
+
             <li
               className="p-4 flex items-center gap-4 hover:bg-gray-700 cursor-pointer"
               onClick={() => navigate("/reports")}

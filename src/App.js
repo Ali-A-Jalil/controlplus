@@ -4,7 +4,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Overview from "./pages/Overview";
 import Reservations from "./pages/Reservations";
-import Clients from "./pages/Clients";
+import CustomerDashboard from "./pages/Customer/CustomerDashboard";
 import Reports from "./pages/Reports";
 import Analytics from "./pages/Analytics";
 import Notifications from "./pages/Notifications";
@@ -81,7 +81,7 @@ const App = () => {
             <Route path="/dashboard" element={<LayoutWrapper><Dashboard /></LayoutWrapper>} />
             <Route path="/overview" element={<LayoutWrapper><Overview /></LayoutWrapper>} />
             <Route path="/reservations" element={<LayoutWrapper><Reservations /></LayoutWrapper>} />
-            <Route path="/clients" element={<LayoutWrapper><Clients /></LayoutWrapper>} />
+            <Route path="/customer-management" element={<LayoutWrapper><CustomerDashboard /></LayoutWrapper>} />
             <Route path="/reports" element={<LayoutWrapper><Reports /></LayoutWrapper>} />
             <Route path="/analytics" element={<LayoutWrapper><Analytics /></LayoutWrapper>} />
             <Route path="/notifications" element={<LayoutWrapper><Notifications /></LayoutWrapper>} />

@@ -3,14 +3,13 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Overview from "./pages/Overview";
-import Reservations from "./pages/Reservations";
+import ReservationDashboard from "./pages/Reservation/ReservationDashboard";
 import CustomerDashboard from "./pages/Customer/CustomerDashboard";
-import Reports from "./pages/Reports";
-import Analytics from "./pages/Analytics";
+import ReportsDashboard from "./pages/Reports/ReportsDashboard";
+import AnalyticsDashboard from "./pages/Analytics/AnalyticsDashboard";
 import Notifications from "./pages/Notifications";
-import Settings from "./pages/Settings";
+import Settings from "./pages/Settings/SettingsDashboard";
 import Profile from "./pages/Profile";
-import UserManagement from "./pages/UserManagement";
 import HR from "./pages/HR/HR";
 import AccountingDashboard from "./pages/Accounting/AccountingDashboard";
 import MarketingDashboard from "./pages/Marketing/MarketingDashboard";
@@ -80,15 +79,14 @@ const App = () => {
           <>
             <Route path="/dashboard" element={<LayoutWrapper><Dashboard /></LayoutWrapper>} />
             <Route path="/overview" element={<LayoutWrapper><Overview /></LayoutWrapper>} />
-            <Route path="/reservations" element={<LayoutWrapper><Reservations /></LayoutWrapper>} />
+            <Route path="/reservations-management" element={<LayoutWrapper><ReservationDashboard /></LayoutWrapper>} />
             <Route path="/customer-management" element={<LayoutWrapper><CustomerDashboard /></LayoutWrapper>} />
-            <Route path="/reports" element={<LayoutWrapper><Reports /></LayoutWrapper>} />
-            <Route path="/analytics" element={<LayoutWrapper><Analytics /></LayoutWrapper>} />
+            <Route path="/reports-management" element={<LayoutWrapper><ReportsDashboard /></LayoutWrapper>} />
+            <Route path="/analytics-management" element={<LayoutWrapper><AnalyticsDashboard /></LayoutWrapper>} />
             <Route path="/notifications" element={<LayoutWrapper><Notifications /></LayoutWrapper>} />
-            <Route path="/settings" element={<LayoutWrapper><Settings /></LayoutWrapper>} />
+            <Route path="/settings-management" element={<LayoutWrapper><Settings /></LayoutWrapper>} />
             <Route path="/profile" element={<LayoutWrapper><Profile user={user} onUpdateUser={setUser} /></LayoutWrapper>} />
             <Route path="/hr" element={<LayoutWrapper><HR /></LayoutWrapper>} />
-            <Route path="/users" element={<LayoutWrapper><UserManagement /></LayoutWrapper>} />
             <Route path="/accounting" element={<LayoutWrapper><AccountingDashboard /></LayoutWrapper>} />
             <Route path="/marketing" element={<LayoutWrapper><MarketingDashboard /></LayoutWrapper>}/>
           </>

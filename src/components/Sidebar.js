@@ -3,7 +3,6 @@ import {
   faBars,
   faChartPie,
   faCalendarAlt,
-  faUserFriends,
   faChartLine,
   faCog,
   faBell,
@@ -12,6 +11,7 @@ import {
   faUserTie,
   faCalculator,
   faBullhorn,
+  faTachometerAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
@@ -37,6 +37,13 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       {/* Navigation Links */}
       <nav className="mt-4">
         <ul>
+        <li
+            className="p-4 flex items-center gap-4 hover:bg-gray-700 cursor-pointer"
+            onClick={() => navigate("/dashboard")}
+          >
+            <FontAwesomeIcon icon={faTachometerAlt} />
+            {isOpen && <span>Dashboard</span>}
+          </li>
           <li
             className="p-4 flex items-center gap-4 hover:bg-gray-700 cursor-pointer"
             onClick={() => navigate("/overview")}
@@ -46,10 +53,10 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           </li>
           <li
             className="p-4 flex items-center gap-4 hover:bg-gray-700 cursor-pointer"
-            onClick={() => navigate("/reservations")}
+            onClick={() => navigate("/reservations-management")}
           >
             <FontAwesomeIcon icon={faCalendarAlt} />
-            {isOpen && <span>Reservations</span>}
+            {isOpen && <span>Reservations Management</span>}
           </li>
           <li
             className="p-4 flex items-center gap-2 hover:bg-gray-700 cursor-pointer"
@@ -61,17 +68,17 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
             <li
               className="p-4 flex items-center gap-4 hover:bg-gray-700 cursor-pointer"
-              onClick={() => navigate("/reports")}
+              onClick={() => navigate("/reports-management")}
             >
               <FontAwesomeIcon icon={faChartLine} />
-              {isOpen && <span>Reports</span>}
+              {isOpen && <span>Reports Management</span>}
             </li>
             <li
               className="p-4 flex items-center gap-4 hover:bg-gray-700 cursor-pointer"
-              onClick={() => navigate("/analytics")}
+              onClick={() => navigate("/analytics-management")}
             >
               <FontAwesomeIcon icon={faChartBar} />
-              {isOpen && <span>Analytics</span>}
+              {isOpen && <span>Analytics Management</span>}
             </li>
             <li
               className="p-4 flex items-center gap-4 hover:bg-gray-700 cursor-pointer"
@@ -82,10 +89,10 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             </li>
             <li
               className="p-4 flex items-center gap-4 hover:bg-gray-700 cursor-pointer"
-              onClick={() => navigate("/settings")}
+              onClick={() => navigate("/settings-management")}
             >
               <FontAwesomeIcon icon={faCog} />
-              {isOpen && <span>Settings</span>}
+              {isOpen && <span>Settings Management</span>}
             </li>
             {/* HR Section */}
             <li

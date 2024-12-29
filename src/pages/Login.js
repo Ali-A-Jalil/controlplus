@@ -94,7 +94,7 @@ const Login = ({ onLogin }) => {
           id="project-name"
           className="text-white text-5xl font-bold mb-8 opacity-30"
         >
-          VisionControl
+          ControlPlus
         </h1>
         <canvas
           id="spider-animation"

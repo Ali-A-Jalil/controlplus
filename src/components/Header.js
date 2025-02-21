@@ -11,7 +11,7 @@ const Header = ({ user, onLogout }) => {
 
   return (
     <header className="bg-blue-500 text-white p-4 flex justify-between items-center fixed top-0 left-0 w-full z-1">
-      <h1 className="text-xl font-bold pl-64">VisionControl</h1>
+      <h1 className="text-xl font-bold pl-64">AnwarIstanbul</h1>
       <div className="relative">
         <div
           className="flex items-center gap-2 cursor-pointer pr-5"

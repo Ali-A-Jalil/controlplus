@@ -90,7 +90,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* رسومات بيانية لكل إدارة */}
+      {/* Chart Drown */}
       <div className="mt-8 grid grid-cols-2 gap-8">
         <div className="bg-white p-6 shadow rounded">
           <h3 className="text-lg font-semibold mb-4">Revenue Analysis</h3>

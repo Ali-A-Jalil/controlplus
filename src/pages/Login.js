@@ -55,7 +55,7 @@ const Login = ({ onLogin }) => {
   // Sample users database
   const users = [
     {
-      email: "admin@example.com",
+      email: "admin@admin.com",
       password: "123456",
       name: "Admin",
       nickname: "AdminBoss",
@@ -189,7 +189,7 @@ const Login = ({ onLogin }) => {
           id="project-name"
           className="text-white text-5xl font-bold mb-8 opacity-30"
         >
-          ControlPlus
+          AnwarIstanbul
         </h1>
         <canvas
           id="spider-animation"

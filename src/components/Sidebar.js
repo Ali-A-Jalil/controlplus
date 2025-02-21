@@ -26,7 +26,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     >
       {/* Sidebar Header */}
       <div className="bg-gray-800 text-white flex items-center px-4 py-3">
-        <h1 className={`text-lg font-bold ${!isOpen && "hidden"}`}>VisionControl</h1>
+        <h1 className={`text-lg font-bold ${!isOpen && "hidden"}`}>AnwarIstanbul</h1>
         <FontAwesomeIcon
           icon={faBars}
           className="text-xl cursor-pointer ml-auto"

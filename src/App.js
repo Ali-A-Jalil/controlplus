@@ -14,12 +14,16 @@ import HR from "./pages/HR/HR";
 import AccountingDashboard from "./pages/Accounting/AccountingDashboard";
 import MarketingDashboard from "./pages/Marketing/MarketingDashboard";
 
+import LeadsDashboard from "./pages/Leads/LeadsDashboard"; // إضافة مكون LeadsDashboard
+
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 
 const App = () => {
   const [user, setUser] = useState(null);
   const [isSidebarOpen, setSidebarOpen] = useState(true);
+  const [leads, setLeads] = useState([]); // قائمة الليدز
+  const [customers, setCustomers] = useState([]); // قائمة العملاء
 
   // Load session on app start
   useEffect(() => {
@@ -27,6 +31,15 @@ const App = () => {
     if (sessionUser) {
       setUser(JSON.parse(sessionUser));
     }
+
+    // تحميل بيانات الليدز والعملاء عند تشغيل التطبيق
+    fetch("/api/leads")
+      .then((response) => response.json())
+      .then((data) => setLeads(data));
+
+    fetch("/api/customers")
+      .then((response) => response.json())
+      .then((data) => setCustomers(data));
   }, []);
 
   // Handle session expiration
@@ -48,6 +61,24 @@ const App = () => {
   const handleLogout = () => {
     setUser(null);
     sessionStorage.removeItem("user");
+  };
+
+  // دالة لإضافة Lead جديد إلى القائمة
+  const handleNewLead = (newLead) => {
+    setLeads((prevLeads) => [...prevLeads, newLead]);
+  };
+
+  // دالة لتحويل Lead إلى Customer عند الدفع
+  const convertLeadToCustomer = (leadId) => {
+    fetch(`/api/leads/convert/${leadId}`, { method: "POST" })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          // تحديث القوائم بعد التحويل
+          setLeads((prevLeads) => prevLeads.filter((lead) => lead.id !== leadId));
+          setCustomers((prevCustomers) => [...prevCustomers, data.newCustomer]);
+        }
+      });
   };
 
   const LayoutWrapper = ({ children }) => (
@@ -80,7 +111,12 @@ const App = () => {
             <Route path="/dashboard" element={<LayoutWrapper><Dashboard /></LayoutWrapper>} />
             <Route path="/overview" element={<LayoutWrapper><Overview /></LayoutWrapper>} />
             <Route path="/reservations-management" element={<LayoutWrapper><ReservationDashboard /></LayoutWrapper>} />
-            <Route path="/customer-management" element={<LayoutWrapper><CustomerDashboard /></LayoutWrapper>} />
+            <Route path="/customer-management" element={<LayoutWrapper>
+              <CustomerDashboard customers={customers} />
+            </LayoutWrapper>} />
+            <Route path="/leads-management" element={<LayoutWrapper>
+              <LeadsDashboard leads={leads} onConvertLead={convertLeadToCustomer} />
+            </LayoutWrapper>} />
             <Route path="/reports-management" element={<LayoutWrapper><ReportsDashboard /></LayoutWrapper>} />
             <Route path="/analytics-management" element={<LayoutWrapper><AnalyticsDashboard /></LayoutWrapper>} />
             <Route path="/notifications" element={<LayoutWrapper><Notifications /></LayoutWrapper>} />

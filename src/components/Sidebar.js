@@ -63,7 +63,15 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             onClick={() => navigate("/customer-management")}
           >
             <FontAwesomeIcon icon={faUsers} />
-            {isOpen && "Customer Management"}
+            {isOpen && "Customers Management"}
+          </li>
+
+          <li
+            className="p-4 flex items-center gap-2 hover:bg-gray-700 cursor-pointer"
+            onClick={() => navigate("/leads-management")}
+          >
+            <FontAwesomeIcon icon={faUsers} />
+            {isOpen && "Leads Management"}
           </li>
 
             <li
@@ -71,7 +79,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
               onClick={() => navigate("/reports-management")}
             >
               <FontAwesomeIcon icon={faChartLine} />
-              {isOpen && <span>Reports Management</span>}
+              {isOpen && "Reports Management"}
             </li>
             <li
               className="p-4 flex items-center gap-4 hover:bg-gray-700 cursor-pointer"

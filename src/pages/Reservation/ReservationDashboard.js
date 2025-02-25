@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { CSSTransition } from "react-transition-group";
-import ReservationList from "./ReservationList";
-import ReservationForm from "./ReservationForm";
-import ReservationCalendar from "./ReservationCalendar";
-import ReservationNotifications from "./ReservationNotifications";
 
+// Lazy load reservation components
+const ReservationList = lazy(() => import("./ReservationList"));
+const ReservationForm = lazy(() => import("./ReservationForm"));
+const ReservationCalendar = lazy(() => import("./ReservationCalendar"));
+const ReservationNotifications = lazy(() => import("./ReservationNotifications"));
+
+// Tabs Configuration
 const tabs = [
   { label: "All Reservations", component: ReservationList },
   { label: "Add/Edit Reservation", component: ReservationForm },
   { label: "Calendar View", component: ReservationCalendar },
   { label: "Notifications", component: ReservationNotifications },
 ];
+
+// Fallback Component for Lazy Loading
+const LoadingSpinner = () => <p className="text-center text-blue-500">Loading...</p>;
 
 const ReservationDashboard = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -45,17 +51,19 @@ const ReservationDashboard = () => {
         ))}
       </div>
 
-      {/* Active Component */}
-      <CSSTransition in={true} timeout={300} classNames="fade" unmountOnExit>
-        <div className="bg-white p-6 rounded shadow">
-          {ActiveComponent && (
-            <ActiveComponent
-              reservations={reservations}
-              onAddReservation={handleAddReservation}
-            />
-          )}
-        </div>
-      </CSSTransition>
+      {/* Active Component with Lazy Loading */}
+      <Suspense fallback={<LoadingSpinner />}>
+        <CSSTransition in={true} timeout={300} classNames="fade" unmountOnExit>
+          <div className="bg-white p-6 rounded shadow">
+            {ActiveComponent && (
+              <ActiveComponent
+                reservations={reservations}
+                onAddReservation={handleAddReservation}
+              />
+            )}
+          </div>
+        </CSSTransition>
+      </Suspense>
     </div>
   );
 };

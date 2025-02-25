@@ -5,15 +5,21 @@ import {
   faKey,
   faSignOutAlt,
   faImage,
-  faCog, // أيقونة الإعدادات
-  faBell, // أيقونة الإشعارات
+  faCog,
+  faBell,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux"; // Import Redux hooks
+import { logoutUser } from "../slices/userSlice"; // Import logout action
 
-const Header = ({ user, onLogout }) => {
+const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // Get user from Redux store
+  const user = useSelector((state) => state.user.user);
 
   const toggleMenu = () => setShowMenu(!showMenu);
   const toggleNotifications = () => setShowNotifications(!showNotifications);
@@ -21,9 +27,9 @@ const Header = ({ user, onLogout }) => {
   return (
     <header className="bg-blue-500 text-white p-4 flex justify-between items-center fixed top-0 left-0 w-full z-1">
       <h1 className="text-xl font-bold pl-64">AnwarIstanbul</h1>
-      
+
       <div className="flex items-center gap-4 pr-5">
-        {/* أيقونة الإشعارات */}
+        {/* Notifications Icon */}
         <div className="relative">
           <FontAwesomeIcon
             icon={faBell}
@@ -33,35 +39,35 @@ const Header = ({ user, onLogout }) => {
           {showNotifications && (
             <div className="absolute right-0 mt-2 bg-white text-black rounded shadow-md w-60 z-50">
               <ul className="p-2">
-                <li className="p-2 border-b border-gray-200">📢 إشعار 1</li>
-                <li className="p-2 border-b border-gray-200">🔔 إشعار 2</li>
-                <li className="p-2">💡 إشعار 3</li>
+                <li className="p-2 border-b border-gray-200">📢 Notification 1</li>
+                <li className="p-2 border-b border-gray-200">🔔 Notification 2</li>
+                <li className="p-2">💡 Notification 3</li>
               </ul>
             </div>
           )}
         </div>
 
-        {/* أيقونة الإعدادات */}
+        {/* Settings Icon */}
         <FontAwesomeIcon
           icon={faCog}
           className="text-xl cursor-pointer"
           onClick={() => navigate("/settings-management")}
         />
 
-        {/* قائمة المستخدم */}
+        {/* User Menu */}
         <div className="relative">
           <div
             className="flex items-center gap-2 cursor-pointer"
             onClick={toggleMenu}
           >
             <img
-              src={user.avatar || "https://via.placeholder.com/150"} // صورة افتراضية
+              src={user?.avatar || "hfile:///C:/Users/DELL/Downloads/2244af71ad0c25f2cb0a8efa167491fb.webphttps://uploads-ssl.webflow.com/6200f5fbbfff19dab55d2228/6201329761c61e45bc873234_61e58a51534066328d04556a_2.jpeg"} // Default image
               alt="User Avatar"
               className="w-10 h-10 rounded-full"
             />
             <div>
-              <span className="font-bold">{user.name}</span>
-              <p className="text-sm">{user.nickname}</p>
+              <span className="font-bold">{user?.name || "Guest"}</span>
+              <p className="text-sm">{user?.nickname || ""}</p>
             </div>
           </div>
 
@@ -91,7 +97,7 @@ const Header = ({ user, onLogout }) => {
                 </li>
                 <li
                   className="p-2 hover:bg-gray-200 flex items-center gap-2 cursor-pointer text-red-500"
-                  onClick={onLogout}
+                  onClick={() => dispatch(logoutUser())} // Logout via Redux
                 >
                   <FontAwesomeIcon icon={faSignOutAlt} />
                   Logout

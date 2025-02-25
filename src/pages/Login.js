@@ -68,7 +68,7 @@ const Login = ({ onLogin }) => {
       name: "Ali",
       nickname: "AliTheGreat",
       avatar:
-        "https://img.freepik.com/free-vector/mysterious-mafia-man-wearing-hat_52683-34829.jpg?semt=ais_hybrid",
+        "https://uploads-ssl.webflow.com/6200f5fbbfff19dab55d2228/6201329761c61e45bc873234_61e58a51534066328d04556a_2.jpeg",
       phoneNumber: "01140263019",
 
     },

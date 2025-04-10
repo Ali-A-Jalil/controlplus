@@ -118,7 +118,22 @@ const AddLead = ({ onLeadAdded }) => {
         <input name="email" placeholder="Email" value={lead.email} onChange={handleChange} className="w-full p-2 border rounded" />
         <input name="passportNumber" placeholder="Passport Number" value={lead.passportNumber} onChange={handleChange} className="w-full p-2 border rounded" />
         <input name="service" placeholder="Service Interested In" value={lead.service} onChange={handleChange} required className="w-full p-2 border rounded" />
-        <input name="residencyType" placeholder="Residency Type" value={lead.residencyType} onChange={handleChange} className="w-full p-2 border rounded" />
+        <select
+        name="residencyType"
+        value={lead.residencyType}
+        onChange={handleChange}
+        className="w-full p-2 border rounded"
+      >
+        <option value="">Select Residency Type</option>
+        <option value="Student Residency">Student Residency</option>
+        <option value="Tourist Residency">Tourist Residency</option>
+        <option value="Work Residency">Work Residency</option>
+        <option value="Family Residency">Family Residency</option>
+        <option value="Humanitarian Residency">Humanitarian Residency</option>
+        <option value="Permanent Residency">Permanent Residency</option>
+      </select>
+
+
         
         <div className="flex gap-2">
           <input type="date" name="residencyFrom" value={lead.residencyFrom} onChange={handleChange} className="w-full p-2 border rounded" />

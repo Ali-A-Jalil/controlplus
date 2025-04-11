@@ -6,7 +6,7 @@ import CustomerInquiries from "./CustomerInquiries";
 import CustomerSupport from "./CustomerSupport";
 import SpecialOffers from "./SpecialOffers";
 import CustomerFeedback from "./CustomerFeedback";
-import AddCustomer from "./AddCustomer";
+import AddCustomer from "./AddCustomerWithInvoice";
 
 const tabs = [
   { label: "Customer Profiles", component: CustomerProfiles },

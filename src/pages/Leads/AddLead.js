@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import countries from "world-countries";
 import Select from "react-select"; // استيراد react-select
+import { parseWhatsAppMessage } from "../../utils/parseWhatsAppMessage";
 
 const AddLead = ({ onLeadAdded }) => {
   const [lead, setLead] = useState({

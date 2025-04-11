@@ -1,3 +1,4 @@
+// LeadProfiles.js
 import React, { useState, useEffect, useCallback } from "react";
 
 const LeadProfiles = () => {
@@ -5,14 +6,21 @@ const LeadProfiles = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Sample dummy data (used if API fails)
   const dummyLeads = [
-    { id: 1, name: "Ahmed Ali", phone: "01012345678", service: "Visa Consultation" },
-    { id: 2, name: "Sara Mohamed", phone: "01234567890", service: "Translation Service" },
-    { id: 3, name: "Omar Hassan", phone: "01156789012", service: "Business Setup" },
+    {
+      id: 1,
+      name: "Ahmed Ali",
+      phone: "01012345678",
+      passportNumber: "A123456",
+      email: "ahmed@example.com",
+      residencyType: "Student Residency",
+      residencyFrom: "2024-01-01",
+      residencyTo: "2024-12-31",
+      service: "Visa Consultation",
+      country: "Egypt",
+    },
   ];
 
-  // Function to fetch leads from API
   const fetchLeads = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -21,8 +29,6 @@ const LeadProfiles = () => {
 
     try {
       const response = await fetch("/api/leads", { signal });
-
-      // Ensure the response is valid JSON
       const contentType = response.headers.get("content-type");
       if (!contentType || !contentType.includes("application/json")) {
         throw new Error("Invalid response format: Expected JSON");
@@ -41,7 +47,7 @@ const LeadProfiles = () => {
       setLoading(false);
     }
 
-    return () => controller.abort(); // Cleanup on unmount
+    return () => controller.abort();
   }, []);
 
   useEffect(() => {
@@ -64,17 +70,46 @@ const LeadProfiles = () => {
             Retry
           </button>
         </div>
-      ) : leads.length === 0 ? (
-        <p className="text-gray-500">No leads found.</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {leads.map((lead) => (
-            <div key={lead.id} className="p-4 border rounded-lg shadow-sm bg-gray-50">
-              <h3 className="text-lg font-semibold text-gray-800">{lead.name}</h3>
-              <p className="text-gray-600"><strong>Phone:</strong> {lead.phone}</p>
-              <p className="text-gray-600"><strong>Service Interested In:</strong> {lead.service}</p>
-            </div>
-          ))}
+        <div className="overflow-x-auto">
+          <table className="min-w-full border border-gray-300">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="border px-4 py-2 text-left">Name</th>
+                <th className="border px-4 py-2 text-left">Phone</th>
+                <th className="border px-4 py-2 text-left">Passport</th>
+                <th className="border px-4 py-2 text-left">Email</th>
+                <th className="border px-4 py-2 text-left">Residency Type</th>
+                <th className="border px-4 py-2 text-left">From</th>
+                <th className="border px-4 py-2 text-left">To</th>
+                <th className="border px-4 py-2 text-left">Service</th>
+                <th className="border px-4 py-2 text-left">Country</th>
+              </tr>
+            </thead>
+            <tbody>
+              {leads.length === 0 ? (
+                <tr>
+                  <td colSpan="9" className="text-center text-gray-500 py-4">
+                    No leads found.
+                  </td>
+                </tr>
+              ) : (
+                leads.map((lead) => (
+                  <tr key={lead.id} className="border-b">
+                    <td className="border px-4 py-2">{lead.name}</td>
+                    <td className="border px-4 py-2">{lead.phone}</td>
+                    <td className="border px-4 py-2">{lead.passportNumber}</td>
+                    <td className="border px-4 py-2">{lead.email}</td>
+                    <td className="border px-4 py-2">{lead.residencyType}</td>
+                    <td className="border px-4 py-2">{lead.residencyFrom}</td>
+                    <td className="border px-4 py-2">{lead.residencyTo}</td>
+                    <td className="border px-4 py-2">{lead.service}</td>
+                    <td className="border px-4 py-2">{lead.country}</td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
         </div>
       )}
     </div>

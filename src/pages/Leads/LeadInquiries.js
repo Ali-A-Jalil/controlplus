@@ -13,33 +13,43 @@ const LeadInquiries = () => {
   ];
 
   // دالة لجلب البيانات من الـ API
+  // const fetchInquiries = useCallback(async () => {
+  //   setLoading(true);
+  //   setError(null);
+    
+  //   try {
+  //     const response = await fetch("/api/leads/inquiries");
+
+  //     // التحقق من أن الاستجابة هي JSON
+  //     const contentType = response.headers.get("content-type");
+  //     if (!contentType || !contentType.includes("application/json")) {
+  //       throw new Error("Invalid response format: Expected JSON");
+  //     }
+
+  //     if (!response.ok) {
+  //       throw new Error(`Failed to fetch inquiries: ${response.status}`);
+  //     }
+
+  //     const data = await response.json();
+  //     setInquiries(data.length > 0 ? data : dummyInquiries); // إذا لم توجد بيانات، استخدم البيانات الوهمية
+  //   } catch (err) {
+  //     setError(err.message);
+  //     setInquiries(dummyInquiries); // استخدام البيانات الوهمية في حالة الخطأ
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }, []);
   const fetchInquiries = useCallback(async () => {
     setLoading(true);
     setError(null);
-    
-    try {
-      const response = await fetch("/api/leads/inquiries");
-
-      // التحقق من أن الاستجابة هي JSON
-      const contentType = response.headers.get("content-type");
-      if (!contentType || !contentType.includes("application/json")) {
-        throw new Error("Invalid response format: Expected JSON");
-      }
-
-      if (!response.ok) {
-        throw new Error(`Failed to fetch inquiries: ${response.status}`);
-      }
-
-      const data = await response.json();
-      setInquiries(data.length > 0 ? data : dummyInquiries); // إذا لم توجد بيانات، استخدم البيانات الوهمية
-    } catch (err) {
-      setError(err.message);
-      setInquiries(dummyInquiries); // استخدام البيانات الوهمية في حالة الخطأ
-    } finally {
-      setLoading(false);
-    }
+  
+    // simulate delay
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+  
+    setInquiries(dummyInquiries);
+    setLoading(false);
   }, []);
-
+  
   useEffect(() => {
     fetchInquiries();
   }, [fetchInquiries]);

@@ -21,34 +21,43 @@ const LeadProfiles = () => {
     },
   ];
 
-  const fetchLeads = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    const controller = new AbortController();
-    const signal = controller.signal;
 
-    try {
-      const response = await fetch("/api/leads", { signal });
-      const contentType = response.headers.get("content-type");
-      if (!contentType || !contentType.includes("application/json")) {
-        throw new Error("Invalid response format: Expected JSON");
-      }
 
-      if (!response.ok) throw new Error(`Failed to fetch leads: ${response.status}`);
+// const fetchLeads = useCallback(async () => {
+//   setLoading(true);
+//   setError(null);
 
-      const data = await response.json();
-      setLeads(data.length > 0 ? data : dummyLeads);
-    } catch (err) {
-      if (err.name !== "AbortError") {
-        setError(err.message);
-        setLeads(dummyLeads);
-      }
-    } finally {
-      setLoading(false);
-    }
+//   try {
+//     // simulate API delay
+//     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    return () => controller.abort();
-  }, []);
+//     // Use dummy data directly
+//     setLeads(dummyLeads);
+//   } catch (err) {
+//     setError("Something went wrong");
+//     setLeads(dummyLeads);
+//   } finally {
+//     setLoading(false);
+//   }
+// }, []);
+const fetchLeads = useCallback(async () => {
+  setLoading(true);
+  setError(null);
+
+  try {
+    // simulate API delay
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    // Use dummy data directly
+    setLeads(dummyLeads);
+  } catch (err) {
+    setError("Something went wrong");
+    setLeads(dummyLeads);
+  } finally {
+    setLoading(false);
+  }
+}, []);
+
 
   useEffect(() => {
     fetchLeads();
@@ -73,7 +82,7 @@ const LeadProfiles = () => {
       ) : (
         <div className="overflow-x-auto">
           <table className="min-w-full border border-gray-300">
-            <thead>
+            <thead className="sticky top-0 bg-gray-100 z-10">
               <tr className="bg-gray-100">
                 <th className="border px-4 py-2 text-left">Name</th>
                 <th className="border px-4 py-2 text-left">Phone</th>
